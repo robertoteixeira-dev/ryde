@@ -11,48 +11,38 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "./global.css";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { ActivityIndicator, SafeAreaView } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
-  const [fontsLoaded] = useFonts({
-    "Rubik-Bold": require("@/assets/fonts/Rubik-Bold.ttf"),
-    "Rubik-ExtraBold": require("@/assets/fonts/Rubik-ExtraBold.ttf"),
-    "Rubik-Light": require("@/assets/fonts/Rubik-Light.ttf"),
-    "Rubik-Medium": require("@/assets/fonts/Rubik-Medium.ttf"),
-    "Rubik-Regular": require("@/assets/fonts/Rubik-Regular.ttf"),
-    "Rubik-SemiBold": require("@/assets/fonts/Rubik-SemiBold.ttf"),
+  const [loaded] = useFonts({
+    "Jakarta-Bold": require("../assets/fonts/PlusJakartaSans-Bold.ttf"),
+    "Jakarta-ExtraBold": require("../assets/fonts/PlusJakartaSans-ExtraBold.ttf"),
+    "Jakarta-ExtraLight": require("../assets/fonts/PlusJakartaSans-ExtraLight.ttf"),
+    "Jakarta-Light": require("../assets/fonts/PlusJakartaSans-Light.ttf"),
+    "Jakarta-Medium": require("../assets/fonts/PlusJakartaSans-Medium.ttf"),
+    Jakarta: require("../assets/fonts/PlusJakartaSans-Regular.ttf"),
+    "Jakarta-SemiBold": require("../assets/fonts/PlusJakartaSans-SemiBold.ttf"),
   });
 
   useEffect(() => {
-    if (fontsLoaded) {
+    if (loaded) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [loaded]);
 
-  if (!fontsLoaded) {
+  if (!loaded) {
     return null;
   }
-
+  
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-   
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-            <Stack.Screen name="sign-in" />
-          </Stack>
-          <StatusBar style="auto" />
-        </ThemeProvider>
-  
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" />
+      </Stack>
     </GestureHandlerRootView>
   );
 }
