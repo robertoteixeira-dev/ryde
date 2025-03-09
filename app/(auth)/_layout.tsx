@@ -1,6 +1,7 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { useAuth } from "@clerk/clerk-expo";
+import { Redirect, Stack } from "expo-router";
 
 SplashScreen.preventAutoHideAsync();
 
