@@ -1,4 +1,4 @@
-//import { useOAuth } from "@clerk/clerk-expo";
+import { useOAuth } from "@clerk/clerk-expo";
 import { router } from "expo-router";
 import { Alert, Image, Text, View } from "react-native";
 
@@ -7,10 +7,10 @@ import { icons } from "@/constants";
 //import { googleOAuth } from "@/lib/auth";
 
 const OAuth = () => {
-  //const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+  const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
   const handleGoogleSignIn = async () => {
-    //const result = await googleOAuth(startOAuthFlow);
+    // const result = await googleOAuth(startOAuthFlow);
     // if (result.code === "session_exists") {
     //   Alert.alert("Success", "Session exists. Redirecting to home screen.");
     //   router.replace("/(root)/(tabs)/home");
